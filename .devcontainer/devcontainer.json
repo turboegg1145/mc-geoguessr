@@ -1,0 +1,30 @@
+{
+  "name": "Minecraft 26.3 Fabric Mod Development",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "target": "dev",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-25",
+            "path": "/opt/java/openjdk",
+            "default": true
+          }
+        ],
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "redhat.java",
+        "vscjava.vscode-gradle"
+      ]
+    }
+  },
+  "remoteUser": "developer",
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "./gradlew --version"
+}

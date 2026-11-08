@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Dedicated Minecraft 26.3 Fabric Server with GeoGuessr Mod
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: server
+    image: mc-geoguessr-server:26.3
+    container_name: mc-geoguessr-server
+    ports:
+      - "25565:25565"
+    volumes:
+      - mc-server-data:/data
+    environment:
+      - MEMORY=3G
+      - JAVA_OPTS=-Xms2G -Xmx3G -XX:+UseG1GC
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+  # Interactive Development & Continuous Build Environment
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    image: mc-geoguessr-dev:latest
+    container_name: mc-geoguessr-dev
+    volumes:
+      - .:/workspace
+      - mc-gradle-cache:/home/developer/.gradle
+    working_dir: /workspace
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+
+volumes:
+  mc-server-data:
+    name: mc-geoguessr-data
+  mc-gradle-cache:
+    name: mc-geoguessr-gradle-cache

@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "geoguessr",
+	"version": "${version}",
+	"name": "Minecraft GeoGuessr",
+	"description": "Play GeoGuessr in Minecraft! Explore mystery locations, pinpoint coordinates, identify biomes, and compete on the leaderboard.",
+	"authors": [
+		"Antigravity"
+	],
+	"contact": {
+		"sources": "https://github.com/geoguessr/mc-geoguessr"
+	},
+	"license": "MIT",
+	"icon": "assets/geoguessr/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.geoguessr.GeoGuessrMod"
+		],
+		"client": [
+			"com.geoguessr.client.GeoGuessrModClient"
+		]
+	},
+	"mixins": [
+		"geoguessr.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
